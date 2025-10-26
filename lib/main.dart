@@ -1,12 +1,42 @@
+/*
+NOTES:
+Flutter is a multi-platform toolkit, can run on iOS, Android, Windows, macOS, Linux, web
+"Development Target" = OS your apps run on during development
+Flutter's most useful development feature is "Stateful Hot Reload"
+Flutter 3.35.6 // Dart 3.9.2 // Java 19.0.2
+command palette = f1
+select device = bottom right of screen "No Device"
+run with debugging = top right arrow
+hot reload by saving file - will update app without having to restart program
+Flutter makes use of trailing commas - good idea to use as they make adding more members trivial - also hep Dart's auto-formatter to work
+having separate widgets for separate logical parts of your UI is an important way of managing complexity in Flutter
+Refactor menu = 'Ctrl + .' whilst selecting the piece of code you want to refactor - can extract / wrap
+Dart is null-safe so won't let you call methods of objects that are potentially null - '!' (bang operator) assures Dart you kno what you're doing
+to access ful list of changeable properties - place cusor within () and hit Ctrl + Shift + Space
+use Widget Inspector whilst debugging to see where widgets extend to (e.g. a column) - can then use the Refactor menu to add a Centre
+MyAppState previously covered all state needs - all the widgets were stateless - they don't contain a mutable state of their own - none of the widgets could change iteslf - must go through MyAppState
+can keep adding properties to MyAppState - but the class would grow beyond reason
+some state is only relevant to a single widget - so it should stay with that widget - hence you can use a StatefulWidget - a widget with a state
+can use the Refactor menu to convert a StatelessWidget > StatefulWidget
+Fliutter works with logical pixels as a unit of length (device independent pixels)
+*/
+
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  /// runs MyApp
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  /// MyApp extends StatelessWidget
+  /// widgets are the elements from which you build every Flutter app
+  /// creates the app-wide state
+  /// names the app
+  /// defines the visual theme
+  /// sets the home widget (starting point of app)
   const MyApp({super.key});
 
   @override
@@ -25,15 +55,24 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
+  /// MyAppState defines the data the app needs to function
+  /// MyAppState extends ChangeNotifier - it can notify others about its own changes
+  /// this state is created and provided to the whole app using ChangeNotifierProvider (see MyApp class) - allows any widgets in the app to get a hold of the state
   var current = WordPair.random();
 
+  // reassigns 'current' to a new random WordPair
+  // calls 'notifyListeners' (a method of ChangeNotifier) to ensure anyone watching MyAppState is notified
   void getNext() {
     current = WordPair.random();
     notifyListeners();
   }
 
-  var favorites = <WordPair>[]; //list of type WordPair
+  // list of type WordPair - initialised empty
+  // could use a set instead {}
+  var favorites = <WordPair>[];
 
+  // removes or adds current word pair to favourites list
+  // notifies listeners after
   void toggleFavorite() {
     if (favorites.contains(current)) {
       favorites.remove(current);
@@ -45,66 +84,99 @@ class MyAppState extends ChangeNotifier {
 }
 
 class MyHomePage extends StatefulWidget {
+  /// stateful widget - has its own state
+  /// underscore makes the class private and is enforced by compiler
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // needs to track one varaible: selectedIndex - initiaised to 0
   var selectedIndex = 0;
 
   @override
+  // every widget defines a build() method that's automatically calledevery time the widget's circumstances cahnge so that the widget is always up to date
   Widget build(BuildContext context) {
+    // page variable of type Widget
     Widget page;
+    // switch statement assigns a screen to page, according to current value in selectedIndex
     switch (selectedIndex) {
       case 0:
         page = GeneratorPage();
       case 1:
         page = FavoritesPage();
+      case 2:
+        // placeholder is a handy widget that draws a crossed rectange wherever you palce it, marking that part of the UI as unfinished
+        page = Placeholder();
       default:
+        //"fail fast principle" makes sure to throw an error if not selected
         throw UnimplementedError('no widget for $selectedIndex');
     }
 
-    return Scaffold(
-      body: Row(
-        children: [
-          SafeArea(
-            //works for example on a mobile phone where the status bar and notch might takeaway from screen
-            child: NavigationRail(
-              extended: false,
-              destinations: [
-                NavigationRailDestination(
-                  icon: Icon(Icons.home),
-                  label: Text('Home'),
+    // LayoutBuilder lets you change your widget tree depending on how much available space you have
+    // builder calback is called every time the constraints change e.g. when the user reszies the app window, the user rotates their phone, widgets next to MyHomePage change in size
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // every build method must return a widget / nested tree of widgets - top-level widget is Scaffold in this case
+        return Scaffold(
+          body: Row(
+            children: [
+              // ensures that its child is not obsucred by a hardware notch or a status bar
+              SafeArea(
+                // navigation rail has 2 destiantions with their respective icons and labels
+                child: NavigationRail(
+                  // doesn't show the labels next to icons if set to false
+                  // shows the labels next to icons if set to true
+                  // shows labels if the width of MyHomePage is greater than or equal to 600
+                  extended: constraints.maxWidth >= 600,
+                  destinations: [
+                    NavigationRailDestination(
+                      icon: Icon(Icons.home),
+                      label: Text('Home'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.favorite),
+                      label: Text('Favorites'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.extension),
+                      label: Text('Placeholder'),
+                    ),
+                  ],
+                  //defines the current selectedIndex - 0 = first destination, 1 = second destination - uses the selectedIndex varaible
+                  selectedIndex: selectedIndex,
+                  //updates the state - setState is similar to notifyListeners - ensures that the UI updates
+                  onDestinationSelected: (value) {
+                    setState(() {
+                      selectedIndex = value;
+                    });
+                  },
                 ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.favorite),
-                  label: Text('Favorites'),
+              ),
+              // expanded widget takes as much of the room as possible (they are greedy)
+              // multiple expanded widgets split all space between themselves
+              Expanded(
+                child: Container(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  child: page,
                 ),
-              ],
-              selectedIndex: selectedIndex,
-              onDestinationSelected: (value) {
-                setState(() {
-                  selectedIndex = value;
-                });
-              },
-            ),
+              ),
+            ],
           ),
-          Expanded(
-            child: Container(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              child: page,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
 
 class GeneratorPage extends StatelessWidget {
+  /// each page of the app is extracted
   @override
   Widget build(BuildContext context) {
+    //tracks changes to the app's current state using the watch method
     var appState = context.watch<MyAppState>();
+
+    //accesses the 'current' member of this class (which is a WordPair)
     var pair = appState.current;
 
     IconData icon;
@@ -115,14 +187,19 @@ class GeneratorPage extends StatelessWidget {
     }
 
     return Center(
+      // column is one of the most basi layout widgets in Flutter - takes any number of children and puts them in a column from top to bottom
       child: Column(
+        // by default, the column visually places its children at the top - this centers it instead along it's main axis
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           BigCard(pair: pair),
+          //SizedBox widget creates visual gaps
           SizedBox(height: 10),
           Row(
+            // could use mainAxisAlignment - but can also use mainAxisSize - different but yields same results
             mainAxisSize: MainAxisSize.min,
             children: [
+              // creates a button with an icon
               ElevatedButton.icon(
                 onPressed: () {
                   appState.toggleFavorite();
@@ -151,18 +228,30 @@ class BigCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // uses the app's current theme defined in MyApp
+    // uses this theme to use the theme's primary colour
+    // updating the theme in MyApp will cascade changes across the whole app
+    // an app-wide Theme opposed to hard-coding values
+    // 'displayMedium' is a type of style for text
+    // copyWith returns a copy - so that changes don't change the whole theme
     var theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,
     );
 
+    // Text widget > wrapped with Padding widget > wrapped with Card widget
     return Card(
       color: theme.colorScheme.primary,
+      // padding adds room around the widget
+      // padget itself is a widget - not an attribute of Text
+      // can add Padding widget for anything you like
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Text(
+          // WordPair provides helpful getters e.g. asPascalCase, asLowerCase
           pair.asPascalCase,
           style: style,
+          // good for accessability - overrides the visual content of the text widget with a semantic content that is more appropriate for screen readers
           semanticsLabel: pair.asPascalCase,
         ),
       ),
@@ -173,14 +262,18 @@ class BigCard extends StatelessWidget {
 class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // accesses current state of app
     var appState = context.watch<MyAppState>();
 
+    // if list of favourites is empty, show centered message saying "no favourites yet"
     if (appState.favorites.isEmpty) {
       return Center(child: Text('No favorites yet.'));
     }
 
+    // otherwise, shows a column that scrolls
     return ListView(
       children: [
+        // shows count of all favourites
         Padding(
           padding: const EdgeInsets.all(20),
           child: Text(
@@ -188,7 +281,9 @@ class FavoritesPage extends StatelessWidget {
             '${appState.favorites.length} favorites:',
           ),
         ),
+        // iterates through all the favourites, constructs a ListTile widget for each one
         for (var pair in appState.favorites)
+          // ListTile widget displays grouped propreties - leading icon and title
           ListTile(
             leading: Icon(Icons.favorite),
             title: Text(pair.asPascalCase),

@@ -1,3 +1,5 @@
+#specifies basic information about app
+
 name: namer_app
 description: "A new Flutter project."
 publish_to: "none"
