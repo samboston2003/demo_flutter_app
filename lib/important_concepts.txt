@@ -1,0 +1,37 @@
+Collection of Important Concepts:
+
+- Flutter is a multi-platform toolkit, can run on iOS, Android, Windows, macOS, Linux, web
+- "Development Target" = OS your apps run on during development
+- Flutter's most useful development feature is "Stateful Hot Reload"
+- Flutter 3.35.6 // Dart 3.9.2 // Java 19.0.2
+- command palette = f1
+- select device = bottom right of screen "No Device"
+- run with debugging = top right arrow
+- hot reload by saving file - will update app without having to restart program
+- Flutter makes use of trailing commas - good idea to use as they make adding more members trivial - also hep Dart's auto-formatter to work
+- having separate widgets for separate logical parts of your UI is an important way of managing complexity in Flutter
+- Refactor menu = 'Ctrl + .' whilst selecting the piece of code you want to refactor - can extract / wrap
+- Dart is null-safe so won't let you call methods of objects that are potentially null - '!' (bang operator) assures Dart you kno what you're doing
+- to access ful list of changeable properties - place cusor within () and hit Ctrl + Shift + Space
+- use Widget Inspector whilst debugging to see where widgets extend to (e.g. a column) - can then use the Refactor menu to add a Centre
+- MyAppState previously covered all state needs - all the widgets were stateless - they don't contain a mutable state of their own - none of the widgets could change iteslf - must go through MyAppState
+- can keep adding properties to MyAppState - but the class would grow beyond reason
+- some state is only relevant to a single widget - so it should stay with that widget - hence you can use a StatefulWidget - a widget with a state
+- can use the Refactor menu to convert a StatelessWidget > StatefulWidget
+- Flutter works with logical pixels as a unit of length (device independent pixels)
+
+- Everything you can place in a varialbe is an object, and every object is an instance of a class
+- Dart is strongly typed, type annotations are optional because Dart can infer types (e.g. using var)
+- If you enable null safety, variables can't contain null unless specified
+- When you want to explicitly say that any type is allowed - use the type Object? or Object
+- Dart supports generic types, like List<int> or List<Object>
+- Dart supports top-level functions (such as main()), as well as functions tied to a class or object (static and instance methods respectively). Can also create functions within functions (nested / local)
+- Dart support top-level variables, as well as variables tied to a class or object (static and instance varaibles) - instance variable sometimes known as fields / properties
+- Dart doesn't have keywords 'public', 'protected', and 'private' - use the underscore (_) before an indentifier to make it private
+- Indentifiers can start with a letter or underscore
+- Dart has both expressions (which have runtime values) and statements (which don't)
+- Dart tools can report 2 kinds of problems: warnings and errors
+- Warnings are indictors that your code might not work, but don't prevent your programs from executing
+- Errors can be either compile-time or run-time. A compile-time error prevents the code from executing atall. A run-time error results in an exception being raised while the code executes
+
+- Effective Dart: https://dart.dev/effective-dart (style guide, documentation guide, usage guide, design guide) 

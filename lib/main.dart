@@ -1,26 +1,3 @@
-/*
-NOTES:
-Flutter is a multi-platform toolkit, can run on iOS, Android, Windows, macOS, Linux, web
-"Development Target" = OS your apps run on during development
-Flutter's most useful development feature is "Stateful Hot Reload"
-Flutter 3.35.6 // Dart 3.9.2 // Java 19.0.2
-command palette = f1
-select device = bottom right of screen "No Device"
-run with debugging = top right arrow
-hot reload by saving file - will update app without having to restart program
-Flutter makes use of trailing commas - good idea to use as they make adding more members trivial - also hep Dart's auto-formatter to work
-having separate widgets for separate logical parts of your UI is an important way of managing complexity in Flutter
-Refactor menu = 'Ctrl + .' whilst selecting the piece of code you want to refactor - can extract / wrap
-Dart is null-safe so won't let you call methods of objects that are potentially null - '!' (bang operator) assures Dart you kno what you're doing
-to access ful list of changeable properties - place cusor within () and hit Ctrl + Shift + Space
-use Widget Inspector whilst debugging to see where widgets extend to (e.g. a column) - can then use the Refactor menu to add a Centre
-MyAppState previously covered all state needs - all the widgets were stateless - they don't contain a mutable state of their own - none of the widgets could change iteslf - must go through MyAppState
-can keep adding properties to MyAppState - but the class would grow beyond reason
-some state is only relevant to a single widget - so it should stay with that widget - hence you can use a StatefulWidget - a widget with a state
-can use the Refactor menu to convert a StatelessWidget > StatefulWidget
-Flutter works with logical pixels as a unit of length (device independent pixels)
-*/
-
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
