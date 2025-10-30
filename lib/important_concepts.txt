@@ -35,3 +35,19 @@ Collection of Important Concepts:
 - Errors can be either compile-time or run-time. A compile-time error prevents the code from executing atall. A run-time error results in an exception being raised while the code executes
 
 - Effective Dart: https://dart.dev/effective-dart (style guide, documentation guide, usage guide, design guide) 
+
+- flutter pub get - fetches the packages your project depends on
+- reads the pubspec.yaml file
+- downloads the necessary packcages from pub.dev
+- saves the exact versions in pubspec.lock so your project is reproducible
+- puts the packcages in your local cache for Flutter and Dart to use
+
+- flutter pub upgrade - tries to upgrade your dependcies to the latest versions allowed by your version contraints in pubspec.yaml
+- fetches newer compatible versions than what's currently in pubspec.lock
+- updated pubspec.lock to reflect these newer versions
+
+- git:
+- git status
+- git add <file_name> or '.' for all
+- git commit -m "message"
+- git push
