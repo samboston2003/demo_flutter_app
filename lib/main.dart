@@ -18,16 +18,20 @@ MyAppState previously covered all state needs - all the widgets were stateless -
 can keep adding properties to MyAppState - but the class would grow beyond reason
 some state is only relevant to a single widget - so it should stay with that widget - hence you can use a StatefulWidget - a widget with a state
 can use the Refactor menu to convert a StatelessWidget > StatefulWidget
-Fliutter works with logical pixels as a unit of length (device independent pixels)
+Flutter works with logical pixels as a unit of length (device independent pixels)
 */
 
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart.dart' as dart_file;
 
 void main() {
-  /// runs MyApp
-  runApp(MyApp());
+  // runs MyApp
+  // runApp(MyApp());
+
+  // runs dart file
+  dart_file.main;
 }
 
 class MyApp extends StatelessWidget {
