@@ -1,5 +1,20 @@
-#specifies basic information about app
+# specifies basic information about app - used to specify your app's dependencies 
+# more info on pubspec: https://dart.dev/tools/pub/pubspec
+# usin packages: https://docs.flutter.dev/packages-and-plugins/using-packages
 
+# install packages from pub.dev - the official package repository for Dart and FLutter apps
+# can do it from the command line:
+# dart pub add http
+# dart pub add build_runner --dev
+# or in VSCode: Ctrl + Shift + P, then "Dart: Add Dependency", then enter a comma separated list of packcages
+# how to choose which packages to install: 1) is it listed as a flutter favourite 2) does it have a high pub score 3) is it well maintained on GitHub 4) is it well documented?
+# when you install a package, you depend on it, and depending on packages taht are buggy, not maintained, and poorly documented will likely end poorly 
+
+# flutter_lints package installed by default
+# lints are rules taht are used to encourage good coding practices, and help you write better and safer code
+# flutter_lints is the default linter package - but as you progress you can switch for stricter linting rules
+# enabling linter rules is one of the best things you can do when startin a new Flutter projects
+# useful checklist for Flutter projects: https://kazlauskas.dev/blog/11-things-to-remember-for-your-next-flutter-project/
 name: namer_app
 description: "A new Flutter project."
 publish_to: "none"
