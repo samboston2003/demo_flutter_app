@@ -50,6 +50,284 @@ void main() {
 
   // constConstructors
   constConstructors();
+
+  // enums
+  enums();
+
+  // inheritance
+  inheritance();
+
+  // mixins
+  mixins();
+
+  // abstrarctClasses
+  abstrarctClasses();
+
+  // interfaces
+  interfaces();
+
+  // async
+  async();
+}
+
+// simulate a slow network call using Future.delayed
+Future<String> fetchData() async {
+  print('Fetching data...');
+  await Future.delayed(Duration(seconds: 2)); // simulate delay
+  return 'Data loaded';
+}
+
+void async() async {
+  // normally code runs synchronously - one line after another
+  // sometimes want to pause and wait for something without freezing the program
+  // that's where 'async' and 'await' come in
+  // 'Future' represents a value that will be available later
+  // 'async' marks a function as asynchronous (returns a 'Future')
+  // 'await' keyword pauses execution until the 'Future' completes
+
+  print('Program started');
+
+  // await pauses until fetchData completes
+  String result = await fetchData();
+  print(result);
+  print('Program finished');
+
+  // alternatitvely: without await
+  // var future = fetchData();
+  // print('This prints immediately!');
+  // future.then((value) => print(value)); // handle Future result with .then()
+  // print('Program finished');
+}
+
+// normal class, but it can be used as an interface
+class Flyer {
+  void fly() {
+    print('Flying...');
+  }
+}
+
+// normal calss, can also be used as an interface
+class Swimmer2 {
+  void swim() {
+    print('Swimming...');
+  }
+}
+
+// class that implements multiple interfaces
+// all methods and properties must be overridden
+// interface != inheritance, you don't get behaviour only the method SIGNATURE (no code is reused)
+class Goose implements Flyer, Swimmer2 {
+  @override
+  void fly() {
+    print('Goose is flying low');
+  }
+
+  @override
+  void swim() {
+    print('Goose is paddling on water');
+  }
+}
+
+void interfaces() {
+  // in Dart, every class defines an interface automatically - not just abstract ones
+  // when you use 'implements', it means "I will follow this class's contract (methods and properties) but I will write my own implementation"
+  // can implement multiple interfaces, unlike inheritance - which only allows one superclass
+
+  var goose = Goose();
+  goose.fly();
+  goose.swim();
+}
+
+// abstract class — you can’t create an instance of it directly
+abstract class Animal3 {
+  // abstract method (declared but no body - needs to be overridden by subclass)
+  void makeSound();
+
+  // concrete method (has a body - doesn't need to be overirdden)
+  void sleep() {
+    print('Sleeping...');
+  }
+}
+
+// a subclass must override the abstract method - all abstract methods must be overidden
+class Cat extends Animal3 {
+  @override
+  void makeSound() {
+    print('Meow!');
+  }
+}
+
+void abstrarctClasses() {
+  // abstract class is a class that can't be implemented directly
+  // exists only to be extended (inherited from) or implemented
+  // use the keyword abstract
+  // usee when you want to provide base functionality and require subclasses to implement specific methods
+
+  var cat = Cat();
+  cat.makeSound();
+  cat.sleep();
+  // error — cannot instantiate abstract class
+  // var a = Animal3();
+}
+
+// define with 'mixin' keyword
+mixin Walker {
+  void walk() {
+    print('Walking...');
+  }
+}
+
+// optional 'on' means only classes that extent or implement Animal2 can use the Swimmer mixin
+mixin Swimmer on Animal2 {
+  void swim() {
+    print('Swimming...');
+  }
+}
+
+// base class
+class Animal2 {
+  void eat() {
+    print('Eating...');
+  }
+}
+
+// class that uses mixins
+class Duck extends Animal2 with Walker, Swimmer {
+  void quack() {
+    print('Quack!');
+  }
+}
+
+void mixins() {
+  // mixins are a way of resuing code in multiple class hierarchies
+  // allows for sharing behaviour between classes without using inheritance
+  // a mixin is like a small "bundle" of methods and properties that you can add to a class
+  // used when you want multiple classes to chare code, but don't want them to share a parent class
+  // safer and cleaner wayo f copy-pasting methods into multiple classes
+  // use when multiple unrelated classes need the same behaviour
+  // when you want code reuse but don't want inheritance
+
+  // mixin = defines a reusable set of behaviours
+  // with = applies one or more mixins to a class
+  // on = restricts which classes can use the mixin
+  // extends = still used for normal inheritance (can be combined with 'with')
+
+  var duck = Duck();
+
+  duck.eat(); // from Animal2 class
+  duck.walk(); // from Walker mixin
+  duck.swim(); // from Swimmer mixin
+  duck.quack(); // from Duck itself
+}
+
+// base class / super class / parent class
+class Animal1 {
+  // property
+  String name;
+
+  // constructor
+  Animal1(this.name);
+
+  // methods
+  void eat() {
+    print('$name is eating.');
+  }
+
+  void sleep() {
+    print('$name is sleeping.');
+  }
+
+  // method that will be overridden by child class
+  void makeSound() {
+    print('$name makes a generic animal sound.');
+  }
+}
+
+// sub class / child class
+class Dog extends Animal1 {
+  // extra property unique to Dog
+  String breed;
+
+  // constructor calls the parent constructor using 'super'
+  Dog(super.name, this.breed);
+
+  // new method only Dog has
+  void bark() {
+    print('$name barks: Woof! Woof!');
+  }
+
+  // override a parent method
+  @override
+  void makeSound() {
+    // optionally call the parent version first
+    super.makeSound();
+    // then add Dog-specific behavior
+    print('$name (a $breed) says: Woof!');
+  }
+}
+
+void inheritance() {
+  // create a Dog object
+  var dog = Dog('Buddy', 'Golden Retriever');
+
+  // access properties
+  print('Name: ${dog.name}');
+  print('Breed: ${dog.breed}');
+
+  // call inherited methods
+  dog.eat();
+  dog.sleep();
+
+  // call subclass-specific methods
+  dog.bark();
+
+  // call overridden method
+  dog.makeSound();
+}
+
+enum Weather {
+  sunny('☀️', 30),
+  cloudy('☁️', 20),
+  rainy('🌧️', 15),
+  snowy('❄️', 0);
+
+  // fields — each enum value will have these
+  final String icon;
+  final int averageTemperature;
+
+  // const constructor — used to assign data to each enum value
+  const Weather(this.icon, this.averageTemperature);
+
+  // method — example of something useful you can do
+  String describe() {
+    return 'Weather: ${name.toUpperCase()} $icon, Avg Temp: $averageTemperature°C';
+  }
+
+  // can also add computed properties
+  bool get isCold => averageTemperature < 10;
+}
+
+void enums() {
+  // enum defines a fixed set of named constants
+  // can add fields, constructors, and methods
+
+  // accessing a value
+  var today = Weather.sunny;
+
+  // using the fields
+  print('Today is ${today.name} ${today.icon}');
+  print('Average temperature: ${today.averageTemperature}°C');
+
+  // using the method
+  print(today.describe());
+
+  // using the computed getter
+  print('Is it cold? ${today.isCold}');
+
+  // loop through all values
+  for (var w in Weather.values) {
+    print(w.describe());
+  }
 }
 
 class ImmutablePoint {
