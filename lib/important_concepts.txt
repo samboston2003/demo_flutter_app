@@ -178,6 +178,43 @@ Theming:
 - 2) Apply a Theme: use the Theme.of(context) method when specifying a widget's styling properties, e.g. style, color. Looks up the widget tree and retrieves the nearest Theme in the tree
 - 3) Override a Theme: to override the overall theme, wrap that section in a Theme widget, either by creating a unique ThemeData instance, or extending the parent theme
 
+State Management Basics:
+- Flutter is a declarative framework that builds the UI to reflect the current state of your app:
+- UI = f(state)
+- App State vs Local (Ephemeral) State:
+- State of an app is everything that exists in memory when the app is running, including assets, variables, animation state, textures, fonts, etc.
+- Framework handles some states (e.g. textures)
+- State = Whatever data you need in order to rebuild your UI at any moment in time
+- The state that you do manage yourself can be separated into two conceptual types: Ephemeral (Local / UI) and App State
+
+- Local State:
+- State you can neatly contain in a single widget, intentionally a vague definition, e.g. current page in PageView, current progress of a complex animation, current selected tab in a BottomNavigationBar
+- Other parts of the widget tree seldom need to access this kind of state - there is no need to serialise it and doesn't change in complex ways
+- No need to use state management techniques on this kind of state - all you need is a StatefulWidget
+- Using setState() and a field inside the StatefulWidget's State is completely natural - no other part of your app needs access to the variables within that widget
+- If the user closes and restarts the app, the local varaibles reset
+
+- App State:
+- State that you want to share across many parts of your app, and you want to keep between user sessions, is called App State
+- Examples: user preferences, login info, notifications in a social networking app, shopping cart in e-commerce app, read/unread state of articles in a news app
+- For managing app state, you want to research your options
+
+- No Clear Cut Rule:
+- You can use State and setState() to manage all the states in your app
+- Goes the other way, might need lots of things to be an app state 
+- No universal rule to distinguish local vs app state
+- In general:
+- Single widget = local state 
+- Some widgets / most widgets = app state
+
+- InheritedWidget = Can share states across multiple widgets via scoped access
+- ValueNotifier = Can store your state outside your widgets
+- ValueListenableBuilder = use with ValueNotifier to update the UI when the state changes
+- ChangeNotifier = "cousin" of ValueNotifier
+- FutureBuilder & StreamBuilder = many asynchronous APIs use Futures and Streams to notify your app when new data is avaliable
+- A Future produces a single asynchronous value, while a Stream can produce many asynchronous values over time
+- Use FutureBuilder / StreamBuilder to decide what widget to show depending on the state of the Future (loading / data / error) / Stream (data, no data, error, loading)
+- State Management Docs: https://docs.flutter.dev/data-and-backend/state-mgmt/simple
 
 Questions:
 - Particular software to create widget hierarchies
