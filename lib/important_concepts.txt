@@ -1,5 +1,4 @@
-Collection of Important Concepts:
-
+Flutter Basics:
 - Flutter is a multi-platform toolkit, can run on iOS, Android, Windows, macOS, Linux, web
 - "Development Target" = OS your apps run on during development
 - Flutter's most useful development feature is "Stateful Hot Reload"
@@ -20,6 +19,7 @@ Collection of Important Concepts:
 - can use the Refactor menu to convert a StatelessWidget > StatefulWidget
 - Flutter works with logical pixels as a unit of length (device independent pixels)
 
+Dart Notes:
 - Everything you can place in a varialbe is an object, and every object is an instance of a class
 - Dart is strongly typed, type annotations are optional because Dart can infer types (e.g. using var)
 - If you enable null safety, variables can't contain null unless specified
@@ -34,8 +34,10 @@ Collection of Important Concepts:
 - Warnings are indictors that your code might not work, but don't prevent your programs from executing
 - Errors can be either compile-time or run-time. A compile-time error prevents the code from executing atall. A run-time error results in an exception being raised while the code executes
 
+Dart Guide:
 - Effective Dart: https://dart.dev/effective-dart (style guide, documentation guide, usage guide, design guide) 
 
+Flutter Command Line:
 - flutter pub get - fetches the packages your project depends on
 - reads the pubspec.yaml file
 - downloads the necessary packcages from pub.dev
@@ -46,8 +48,112 @@ Collection of Important Concepts:
 - fetches newer compatible versions than what's currently in pubspec.lock
 - updated pubspec.lock to reflect these newer versions
 
-- git:
+Git Command line:
 - git status
 - git add <file_name> or '.' for all
 - git commit -m "message"
 - git push
+
+Flutter Widgets:
+- Build UIs using widgets and composing them together in a declarative manner
+- Flutter offers an extensive set of widgets the closely match the Material Design (https://docs.flutter.dev/ui/widgets/material) specification
+- Flutter controls every pixel on the screen, can create your own widgets
+
+Build Context:
+- A Widget doesn't know where it is in regard to other widgets in the Widget tree
+- Element = information needed at runtime for this widget in this part of the app - all in an Element tree - all in reference to the Widget that they represent
+- An Element is a type of context 
+- Allows widget to figure out where it is, gives the widget build method the context it needs
+
+Widgets vs Helper Methods:
+- UI is made from wrapping Widgets in other Widgets
+- Eventually, this build method becomes very large and needs breaking up
+- First step is to make a judgement call - picking which codeblocks are good candidates for re use
+- E.g. repeated sequences of code and discrete sections of actual UI, in other words things that are contained and / or repeat
+- How to move the code? 
+- 1) Is to move the code into a method in the same widget (helper method option) 
+- 2) Similar, but instead of moving codeblock to method in same widet, move it into an entirely new widget
+- Helper Methods have downsides 
+- 1) Performance: when SetState() is called from within a widget, it's entire build method is re run, which is inefficient to rebuild whole sections of UI - so instead of using helper method - use an entire new widget so Flutter can target rebuilds, using const constructors is even more efficient
+- 2) Testability: writing test on a separate widget is simple, however with helper methods, you're required to construct alot of irrelevant widgets
+- 3) Accuracy: with helper methods, it's possible that stale build contexts are used - but with widgets, you can prevent this
+- Overall, deafult to classes over methods - there's no functional benefit to methods other than ease of writing code 
+
+Layouts in Flutter:
+- Everything is a Widget, including layout models (e.g. rows, columns, grids that arrange, constaiin and align visible wigets - create a layout by composing widgets to build more complex widgets)
+- Container is a widget that allows you to customise its child widget - use a Container when you want to, for example add padding, margins, borders, or background colour 
+- Contnrol the rest of the UI with Widget's properties e.g. Icon's colour with 'color', Text's properties with 'Text.style', Column's properties for alignment and space
+- Set 'debugPaintSizeEnabled' to true to see the visual layout of widgets (borders)
+
+Lay Out a Widget:
+- 1) Select a layout widget - based on how you want to align or constrain a visible widget e.g. Center()
+- 2) Create a visible widget - e.g. Text()
+- 3) Add visible widget to the layout widget - all layout widgets have either of the following: 1) a child property if they take a single child e.g. Center, Container 2) a children property is they take a list of widgets e.g. Row, Column, ListView, Stack
+- 4) Add the layouut widget to the page - instantiating and returning a widget in the app's build() method displays the widget
+- for a genneral app, you can add the Container widget to the app's build() method
+- for a Material app, you can use a Scaffoold widget - it proviides a default banner, background colour, and has API for adding drawers, snack bars, and bottom sheets - can add the Center() widget diretly to the body property for the home page
+
+Choosing Widgets
+- Can use Flutter Widget of the week (https://www.youtube.com/watch?v=b_sQ9bMltGU&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG)
+
+Most Useful Layout Widgets: 
+- (https://www.youtube.com/watch?v=RJEnTRBxaSg) 
+- (https://www.youtube.com/watch?v=-zJ6CnOVndE)
+- Row
+- Column
+- Stack
+- Expanded
+- Padding
+- PageView
+- ListView
+- GridView
+- Slivers
+- CustomScrollView
+
+More Complex Sliver Layouts: 
+- (https://www.youtube.com/watch?v=E3-WdYBrEDc) 
+- (https://www.youtube.com/watch?v=k2v3gxtMlDE)
+- SliverAppBar
+- SliverPersistantHeader
+- SliverList
+- SliverGrid
+- SliverToBoxAdaptor
+- SliverFillReamining 
+
+Constraints:
+- In Depth Explanation with Examples: (https://docs.flutter.dev/ui/layout/constraints)
+- Flutter needs to perform layout quickly - needs to efficiently decide where to put Widgets on the screen
+- Therefore Flutter's layout algorithm is single pass - contraints (e.g. padding) go down and geometry (size) goes up
+- This happens to every widget - starts at top of tree and goes down to every leaf node (with contraints) and then back up to (with geometry)
+- It gets more interesting with Widgets with multiple children (e.g. Column)
+- This is where issues can arise e.g. if one of the children is a ListView (which is greedy and will take as much space as possible)
+- This will give:
+- 1) an error, or
+- 2) an unwanted UI behaviour, or
+- 3) cause a multi-pass algorithm which is much slower
+- Fix by being as explicit as possible - e.g. wrap in Expanded(), or Flexible(), or SizedBox()
+
+Basic Responsive Layouts:
+- Guide: https://blog.codemagic.io/building-responsive-applications-with-flutter/
+- Can be a challenge to adapt your app to a variety of screen sizes and pixel densities using the same codebase
+- No hard and fast rules for designing a responsive layout in Flutter
+- Android and iOS handle responsiveness differently - but Flutter handles this
+- 1) MediaQuery - retrieves the size and orientation of the screen - is a property access
+- 2) LayoutBuilder - allows you to get BoxConstaints object, which can be used to determine the maxWidth and maxHeight of the widget 
+- 3) OrientationBuilder - to determine a widget's custom orientation, you can use the OrientationBuilder class - is a Widget
+- 4) Exapnded and Flexible - Expanded widgets expands a child of Row, Column, or Flex so that the child fills all avaliable space, Flexible does not have to
+- 5) FractionallySizedBox - helps to size its child to a fraction of the total avaliable space
+- 6) Aspect Ratio - size the child to a specific aspect ratio - widget first tries to largest width permitted by the layout constaints and then decides height by applying given aspect ratio
+- Split View Guide: https://codewithandrea.com/articles/flutter-responsive-layouts-split-view-drawer-navigation/
+- Split View (large screens) and Drawer Navigation (Mobile) - creates different views depending on the scren size - can use a threshold for window width
+
+Complex Responsive Layout Packages:
+- layout (https://pub.dev/packages/layout)
+- responsive_builder (https://pub.dev/packages/responsive_builder)
+
+Adaptive Response:
+- https://docs.flutter.dev/ui/adaptive-responsive
+
+
+Questions:
+- Particular software to create widget hierarchies
