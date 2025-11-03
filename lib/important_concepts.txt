@@ -154,6 +154,30 @@ Complex Responsive Layout Packages:
 Adaptive Response:
 - https://docs.flutter.dev/ui/adaptive-responsive
 
+Theming:
+- Important to create a cohesive design by sharing colours and font styles
+- How to esnure all colours and styles are applieid consistently across all the pages in your app?
+- Use Flutter's theming system by following 2 main steps:
+- 1) Creating an app theme by setting tht etheme property of the MaterialApp constructor
+- 2) Apply the theme by using Theme.of(context) when specifying a widget's styling properties
+- Android and iOS have different design systems - Android uses Material 3, iOS uses Cupertino - Flutter apps are adaptive by default - they follow the look and feel of the platform they are running in
+- More information about automatic platform adaptions: https://docs.flutter.dev/ui/adaptive-responsive/platform-adaptations
+- Desgining a Flutter UI Documentation: https://docs.flutter.dev/reference/learning-resources#designing-a-flutter-ui
+- Material 3: https://docs.flutter.dev/ui/design/material
+- Theme Extensions: https://www.youtube.com/watch?v=8-szcYzFVao  
+
+- To share colours and fonts throughout an app, use themes
+- Can define app-wide themes, you can extend a theme to change a theme style for one component
+- Each theme defines the colours, type style, and other parameters applicable for the type of Material component
+- Flutter applies styling in the following order:
+- 1) Styles applied to specific widget
+- 2) Themes that override the immediate parent theme
+- 3) Main theme for the entire app
+- After you define Theme, use it wthin your own widgets, Flutter's Material widgets use your theme to set the background colours and font styles for visual widgets
+- 1) Create an App Theme: set the theme propety to your MaterialApp constructor - takes a ThemeData instance with properties colorScheme and textTheme
+- 2) Apply a Theme: use the Theme.of(context) method when specifying a widget's styling properties, e.g. style, color. Looks up the widget tree and retrieves the nearest Theme in the tree
+- 3) Override a Theme: to override the overall theme, wrap that section in a Theme widget, either by creating a unique ThemeData instance, or extending the parent theme
+
 
 Questions:
 - Particular software to create widget hierarchies
