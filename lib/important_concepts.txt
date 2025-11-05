@@ -256,5 +256,39 @@ State Management Basics:
 - Unique Key: always unique, even if created with the same data, forces Flutter to treat the widget as completely new every rebuild
 - Global Key: most powerful and heaviest type - identities a widget globally across the entire app - not just among siblings - lets you access a widget's state or context directly
 
+State Management Packages & App Architecture:
+- Once you're confident with built in state management APIs in Flutter, you can look at 3rd party solutions
+- Most stable, well-documented, maintained, and supported packages: provider, flutter_bloc, riverpod
+- Only need one of these
+
+- Provider:
+- Provider = InheritedWidget + Generics
+- Gives you scoped access to things in your widget tree by type
+
+- flutter_bloc:
+- Similar to Provider
+
+- Riverpod:
+- Reactive caching and data-bindin framework that evolved from Provider
+- Does not depend on Flutter and widget tree
+- Uses global providers that are references by name, not by type
+- Allows you to manage state in complex applications in a type-safe way with minimal boilerplate code
+- Great support for testing and works well when combining providers together
+
+- Which Package is Best?
+- Help you separate business logic from the UI code
+- Comparison: https://github.com/bizz84/movie_app_state_management_flutter
+
+- App Architecture:
+- State managment solutions above are tools that you can use to build your apps
+- When building complex apps, choosing the correct app architecture is crucial, as it allows you to structure your coe and support your codebase as it grows
+- Good app architecture: https://codewithandrea.com/articles/flutter-app-architecture-riverpod-introduction/
+- If we want to create complex apps with many pages and features, we should decide how to structure our project
+- This ensures the entire team can follow a clear convention and add features in a consistent manner
+- 2 Main Project Structures: Feature-First or Layer-First
+- Comparison: https://codewithandrea.com/articles/flutter-project-structure/
+
 Questions:
-- Particular software to create widget hierarchies
+- How do you design software hierarchies - e.g. particular software
+- What state management systems do you use?
+- 
