@@ -216,5 +216,45 @@ State Management Basics:
 - Use FutureBuilder / StreamBuilder to decide what widget to show depending on the state of the Future (loading / data / error) / Stream (data, no data, error, loading)
 - State Management Docs: https://docs.flutter.dev/data-and-backend/state-mgmt/simple
 
+- StatelessWidget is composed of children and does not have any mutable state that it needs to track
+- Mutable state is a property that would change over time e.g. textbox that changes text, widget that is animated
+- A StatelessWidget has none of that
+- Can use final (assigned once at runtime) for widgets that don't cahnge after being set
+- Can use const (compile-time constant) for widgets and fields that can be fully known at compile time
+- All StatelessWidget can use finals but not all can use const - if it can't use finals then it should be a StatefulWidget as fields change during run time
+- StatelessWidget can't track data over time or trigger rebuilds over time
+
+- StatefulWidgets provides mutable configuration information and a state object that can change over time and trigger rebuilds to the UI
+- 2 Trees: Widget and Element Tree, ElementTree is actully what represent what's on screen and the widgets are just blueprints for those elements  
+- For StatelessWidget, it's simple and a StatelessElement is created using the StatelessWidget blueprint
+- With a StatefulWidget, there's an extra step, where the element also creates a State objet using the Widget blueprint
+- Use the setState() method in the State object to make a change - allows you to set updates in the State object and make updates to the UI
+- Every time a State object is updated, this is marked and the UI is updated in the next frame 
+- Child widgets are then updated as State is updated
+- Even if the parent widget has been replaced, if the child widget is of the same type, then this is maintained
+
+- When app gets larger and widget tree gets more complex passing and accessing data can get cumbersome 
+- If you have a large amount of nested widgets, and you need to pass data from the top to the bottom, you'll have to pass it through all the inbetween constructors and build methods of the widgets between
+- You can use InheritedWidget to circumvent this - when you place an InheritedWidget at the top of the tree, any child widget can access it directly
+- InheritedWidget is immutable
+
+- Key parameters on Widgets
+- Keys preserve States when widgets move around in the widget tree
+- Can be used to preserve the user's scroll locaiton, or keeping state when modifying a collection
+- When to Use Keys: 
+- If you find yourself adding, removing or reordering a collection of widgets of the same type that hold the same state - then use keys 
+- However, if the entire widget subtree in your collection is Stateless, then keys aren't needed
+- This covers most your situations
+- How Keys Work: 
+- Element tree only holds information about the type of each widget - and a reference of child elements - shows the structure without the details - this is in the reference to the widget 
+- When a widget tree is updated, it checks to see if the element tree matches not only the type but the key too - if so then it is updated. if a key isn't used the types match and therefore the element tree isn't updated even if the state has changed
+- Where to Put Keys: 
+- When matching widgets to elements, Flutter only looks for a key that matches at a certain level in the tree and if it's not there then it initialises a new state
+- Types of Keys:  
+- Value Key: compares equality based on a value you provide (like a string or number)
+- Object Key: compares objects by identity (using ==) like when you have a complex model object
+- Unique Key: always unique, even if created with the same data, forces Flutter to treat the widget as completely new every rebuild
+- Global Key: most powerful and heaviest type - identities a widget globally across the entire app - not just among siblings - lets you access a widget's state or context directly
+
 Questions:
 - Particular software to create widget hierarchies
