@@ -288,7 +288,49 @@ State Management Packages & App Architecture:
 - 2 Main Project Structures: Feature-First or Layer-First
 - Comparison: https://codewithandrea.com/articles/flutter-project-structure/
 
+Navigation and Routing:
+- Need to learn APIs so you can navigate between screens
+
+- Navigator 1.0:
+
+- Basic Navigation with Push/Pop:
+- https://docs.flutter.dev/cookbook/navigation/navigation-basics
+- 1) Getting a navigator object for the current context
+- 2) Calling push() to add a new route to the navigation stack 
+- 3) Calling pop() to return to the previous route once done 
+
+- Basic Navigation with Named Routes:
+- https://docs.flutter.dev/cookbook/navigation/named-routes
+- Define a set of named routes so yuo can centralise all your routing logic in the same place
+
+- Passing Argument to Named Routes:
+- https://docs.flutter.dev/cookbook/navigation/navigate-with-arguments
+- Once you're comfortable with named routes, the next thing you'll want to do is to pass arguments to them
+
+- Navigator 2.0:
+
+- Limitations of Navigator 1.0:
+- Arbritrary changes to the navigation stack are hard because push() and pop() only apply to the topmost route
+- Deep linking from push notifications is hard as it requires changing the tnrie navigation stack that is not practical using push() and pop()
+- Restoring the app navigation state on app restart is hard for teh same reasons
+
+- Navigator 2.0 solves these issues by introducing a declarativeAPI that is backwards compatible with the imperative API of Navigator 1.0
+- However, Navigator 2.0 APIS were hard to use
+
+- Other Naviagtion & Routing Packages:
+
+- To overcome complexiity of Navigator 2.0, community has createdvarious packages that offer a simple API and make declarative navigation easy
+- Most popular packages:
+- go_router
+- auto_route
+- beamer
+
+Bottom Line:
+- Use 1.0 if your app only needs to perform simple navigation with push() and pop() (including named routes)
+- Use 2.0 if you need to handle deep links, perform state restoration, or make arbritrary changes to the navigation stacks
+- Use a good 3rd party package if you find Navigator 2.0 too complex, but still need a declarative API
+
 Questions:
 - How do you design software hierarchies - e.g. particular software
 - What state management systems do you use?
-- 
+- What navigation / routing package do you use?
