@@ -330,6 +330,36 @@ Bottom Line:
 - Use 2.0 if you need to handle deep links, perform state restoration, or make arbritrary changes to the navigation stacks
 - Use a good 3rd party package if you find Navigator 2.0 too complex, but still need a declarative API
 
+Interactivity and User Input:
+
+- Every app needs to deal with user Input
+- Many details to consider:
+- Input text validation
+- Handling selected focus and dismissing keyboard when needed
+- Getting and setting the text field's data and updating the form state
+- Text field apperance (decoration. placeholder text, error hints, etc.)
+
+- Can use TextField widgets, passing a TextEditingController as an argument to control the text inside of it, typically done within a StatefulWidget
+- Howevver, if you have more than 1 text field on your page, you'll need a TextEditingController for each TextField, which can lead to alot of boilerplate
+- Can use the built-in Form and FormTextField widgets (https://www.youtube.com/watch?v=OtIDk6-p3eQ)
+- Learn more about Flutter forms (https://docs.flutter.dev/cookbook/forms)
+- Learn more about TextField (https://medium.com/flutter-community/a-deep-dive-into-flutter-textfields-f0e676aaab7a)
+- Learn about client-side validation (https://codewithandrea.com/articles/flutter-text-field-form-validation/)
+
+- Working with TextEditingController can add alot of boilerplate to your apps
+- flutter_hooks provides an elegant solution for this and comes with a useTextEditingController API that you can use to streamline your text editing code
+- https://pub.dev/documentation/flutter_hooks/latest/flutter_hooks/useTextEditingController-constant.html
+
+- Text input is just one of many ways that users can interact with an app
+- Other common input widgets are date and time pickers, checkboxes, radio boxes, sliders, switches
+- Listed in the Material Component Widgetes catalogue: https://docs.flutter.dev/ui/widgets/material#Input%20and%20selections
+
+- All widgets above are visual UI components that can be shown on screen, but Flutter also gives you some rich APIs for detecting user geustures
+- Overview for how to use geustures in Flutter: https://docs.flutter.dev/ui/interactivity/gestures
+- Deep dive: https://medium.com/flutter-community/flutter-deep-dive-gestures-c16203b3434f 
+
+
+
 Questions:
 - How do you design software hierarchies - e.g. particular software
 - What state management systems do you use?
