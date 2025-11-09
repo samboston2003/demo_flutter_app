@@ -358,6 +358,24 @@ Interactivity and User Input:
 - Overview for how to use geustures in Flutter: https://docs.flutter.dev/ui/interactivity/gestures
 - Deep dive: https://medium.com/flutter-community/flutter-deep-dive-gestures-c16203b3434f 
 
+Animations:
+
+- Flutter offers some well designed APIs that make it easy to implement complex animations and make your apps stand out
+- Introduction to animations: https://docs.flutter.dev/ui/animations
+- Animation codelabs: https://docs.flutter.dev/ui/animations#codelabs-tutorials-and-articles
+- Talk about Flutter's animation system: https://www.youtube.com/watch?v=FCyoHclCqc8
+
+- Animation Packages:
+- flutter_animate
+- SpinKit
+- animations
+- Funvas
+- Simple Animations
+- Staggered Animations
+- Spring
+- Rive
+
+- CodeWithAndrea - Flutter Animations Masterclass Full Course
 
 
 Questions:
