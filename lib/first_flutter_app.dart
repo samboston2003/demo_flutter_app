@@ -1,18 +1,10 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart.dart' as dart_file;
-import 'first_flutter_app.dart' as flutter_file;
 
 void main() {
   // runs MyApp
-  // runApp(MyApp());
-
-  // runs dart file
-  // dart_file.main;
-
-  // runs first_flutter_app file
-  flutter_file.main();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

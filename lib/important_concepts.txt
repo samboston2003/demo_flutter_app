@@ -538,7 +538,7 @@ Additional Content:
 
 Questions:
 - How do you design software hierarchies - e.g. particular software
-- What state management systems do you use?
+- What state management packages do you use?
 - What navigation / routing package do you use?
 - What testing package do you use?
 - What CI / CD systems do you use?
