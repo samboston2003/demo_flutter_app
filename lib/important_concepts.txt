@@ -494,8 +494,47 @@ Automated Testing:
 - Documentation: https://patrol.leancode.co/
 - Video: https://www.droidcon.com/2023/08/07/reimagining-flutter-ui-tests-with-patrol/
 
+Continious Inegration & Delivery:
+
+- Tests are only useful if we run them regularly
+- Most popular CI (Continious Integration) systems for Flutter are Codemagic and Gtihub applications
+- These systems let you automate your test by setting up workflows that run when you want
+- E.g. you could let them run your entire test suite when you push a new branch or open / update a pull request
+- This is useful as you can ensure that all tests are green before merging changes to the main branch
+- Can also use the CI tools to build release versions of your apps and deliver them to the App Store or Play Store
+- Or, if you want to distribute internal builds to your beta testers, you can do that too
+
+- Codemagic
+- Easy to use
+- Can set up and customise your workflows visually to add custom build steps and various 3rd party integrations
+- E.g. can configure it to send a Slack notification when your builds succeed or familiar
+-  Overview of Codemagic: https://blog.codemagic.io/7-reasons-to-use-codemagic/
+
+- GitHub Actions:
+- Doesn't offer a UI interface, you write custom build workflows in yaml format, and you can use pre-built actions that are freely avaliable in the GitHub marketplace
+- Documentation for the Flutter action: https://github.com/marketplace/actions/flutter-action
+- Detailed introduction to GitHub Actions: https://docs.github.com/en/actions/get-started/understand-github-actions
+- Video Tutorial: https://www.youtube.com/watch?v=rpQKpXjH5vs
+- Actions are powerful but they have a steeper learning curve
+- If you make a typo or mistake in workflow file, you can only find out what went wrong by inspectin the build log once the build has completed
+
+- Fastlane:
+- Open sourced tool that makeit easy to automate beta deployments and releases for apps
+- Particularly useful for managing and updating the code signing certificates and signing release apps
+- Many people use Fastlane in their Flutter build workflows, either with GitHub Actions or Codemagic
+- Official Flutter documentation offers a good overview of Continious delivery with fastlane: https://docs.flutter.dev/deployment/cd
+- Guide for setting up Flutter & Fastlane: https://rodydavis.com/posts/flutter-one-click-release 
+- Can take a bit of time to set up Fastlane the first time, but once it's up and running, can save a lot of time in the future
+
+- Releasing to the App Stores:
+- Official documentation has important steps that you need to follow in preparation for this:
+- Android: https://docs.flutter.dev/deployment/android
+- iOS: https://docs.flutter.dev/deployment/ios 
+- Firebase launch checklist: https://firebase.google.com/support/guides/launch-checklist
+
 Questions:
 - How do you design software hierarchies - e.g. particular software
 - What state management systems do you use?
 - What navigation / routing package do you use?
 - What testing package do you use?
+- What CI / CD systems do you use?
