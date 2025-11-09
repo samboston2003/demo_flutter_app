@@ -442,7 +442,7 @@ Networking:
 - Can also consider using the freezed package
 - Intro to code generation and freezed package: https://www.youtube.com/watch?v=pI6cXMmXBkA&feature=youtu.be
 
-- Other Netorking Packages:
+- Other Networking Packages:
 - http package is easy to use and works well for simple apps
 - For apps with more complex requirements, the dio package may be more appropiate 
 - Dio supports more advanced features, such as sending form data, request cancellation, file downloading etc.
@@ -450,7 +450,24 @@ Networking:
 - Retrofit can auto generate REST clients for all your models with minimal boiler plate code, that auto-generated all the netwroking and serialisation code for you
 - Generate REST API clients in Dart from an API schema using OpenAPI: https://www.youtube.com/watch?v=WF1pd5bdtcI&feature=youtu.be
 
+Flutter Platform Channels & Dart FFI:
 
+- Single codebase, multiple platforms, is the biggest advantage of Flutter
+- But sometimes, we need to use platform-specific APIs to access features such as camera input, geolocation, connectivity, and notifications
+- Many packages that do the heavy lifting for you so you don't have to write platform-specific code by handle
+- Still very useful and interesting to understand how Flutter apps communicate with the underlying platform APIs
+
+- Platform Channels:
+- To write platform specfic code, you'll need to become familiar wth Swift (iOS) and Kotlin (Andriod)
+- This makes you a better developer who is comfortable with more than just one langauge or framework
+- Don't need to be an expert, but knowing just enough to find your way around is a valuable skill as you may find yourself working with platform-specific APIs
+- Guide on Writing Custom Platform Specific Code: https://docs.flutter.dev/platform-integration/platform-channels
+- Guide on Flutter Platform Channels: https://blog.flutter.dev/flutter-platform-channels-ce7f540a104e
+
+- Dart FFI:
+- Platform channels are great for accessing platform-specific APIs
+- But if you want to run performance critcal code that is written with a different langauge, such as C, C++, robust
+- For this Dart defines a Foreign Function Interface, and this tutorial shows how: https://quickbirdstudios.com/blog/dart-swift-objective-c-interop/
 
 
 Questions:
