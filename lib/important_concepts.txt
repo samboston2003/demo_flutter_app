@@ -532,6 +532,10 @@ Continious Inegration & Delivery:
 - iOS: https://docs.flutter.dev/deployment/ios 
 - Firebase launch checklist: https://firebase.google.com/support/guides/launch-checklist
 
+Additional Content:
+- Flutter Article from Code with Andre: https://codewithandrea.com/articles/
+- Flutter Example Apps on GitHub: https://github.com/bizz84/flutter_example_apps
+
 Questions:
 - How do you design software hierarchies - e.g. particular software
 - What state management systems do you use?
