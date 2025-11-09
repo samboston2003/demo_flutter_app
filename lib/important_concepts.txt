@@ -377,6 +377,56 @@ Animations:
 
 - CodeWithAndrea - Flutter Animations Masterclass Full Course
 
+Local Data Persistence:
+
+- Data persistence is an important requiremnt for many differnet apps
+- By saving data locally to the disk, you can retrieve it the next time the app is started and present it again
+
+- Using a Key-Value Store:
+- Use shared_preferences to store non-sensitive user data
+- May include things like app preferences, settings, or a boolean flag to verify if the user has completed the app onboarding
+- Another popular key-value store is Hive CE, which is cross-playform, has a simple and intuitive API, very fast, and has strong encryption built in
+
+- Using a Secuer Key-Value Store:
+- Senitive data such as the user's email and address should not be saved unencrypted
+- When dealing with sensitive data, it's best to use a secure key-value store such as flutter_secure_storage
+- This has an API that is very similar to shared preefrences but uses the underlying Keychain on iOS and KeyStore on Android
+
+- Using a Relational Database (SQL): 
+- Can use sqlflite, the SQLite plugin for Flutter
+- Provides some asynchronous APIs for reading from and writing to a local database using SQL
+- Not type safe, can lead to bugs that are hard to diagnose
+- To solve this, Drift package was created
+- Is type-safe reactive persistence library for Flutter and Dart, built on top of SQLite
+- Drift has extensive documentation convering everything you need to know#
+- Top Flutter Persistent SQL Database Pacakges: https://fluttergems.dev/sql-database/ 
+
+- Using a NoSQL Database:
+- Relational databases are very powerful and a robust choice for data persistance 
+- Have a bit of learning curve, so cna start with some simpler NoSQL alternative, e.g. Isar, ObjectBox, or Realm
+- Top Fluter Persistent NoSQL Database Packages: https://fluttergems.dev/nosql-database/
+
+- Reading and Writing Files to disk
+- Key-value stores and relational databases are great, but sometiime want to write data directly to files on disk
+- Done by combining the path_providier plugin with the dart:io library
+
+- Which Package to Use?
+- shared_preferences for non sensitive data
+- flutter_secure_storage for sensitive data
+- drift for complex relational data and want both type-safety and SQL
+- path_providier and dart:io for saving local files to disk
+- API keys: https://codewithandrea.com/articles/flutter-api-keys-dart-define-env-files/
+
+- Local vs Remote Data Persistence:
+- Local data persistance is fine if you don't need to sync data across multiple devices
+- With local persistance, users will lose their data if they move to a new device without backing it up
+- Local data persistence tutorial: https://www.youtube.com/watch?v=uCbHxLA9t9E&feature=youtu.be
+- Many apps need to access user-generated content that is saved remotely in the cloud
+- In this case, you need to create your own backend using a Backend-as-a-Service, e.h Firebase, Supabase, AppWrite
+- Firebase offers things like authentication. a real-timepersistent document store, cloud functuions, and many other useful features
+- CodeWithAndrea Firebase Masterclass: https://codewithandrea.com/courses/flutter-firebase-masterclass/
+
+
 
 Questions:
 - How do you design software hierarchies - e.g. particular software
