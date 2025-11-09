@@ -426,6 +426,31 @@ Local Data Persistence:
 - Firebase offers things like authentication. a real-timepersistent document store, cloud functuions, and many other useful features
 - CodeWithAndrea Firebase Masterclass: https://codewithandrea.com/courses/flutter-firebase-masterclass/
 
+Networking:
+
+- Basics:
+- If you want your apps to read data from public APIs for communicate with your own custom backend, you'll need to write some netwokring code
+- Simple apps that ned to talk to a REST API can use the Dart http package
+- Offers a Future-bsed AI for making network requests, and works on all platfroms since it's a pure Dart package
+- Most REST APIs willr epond with data in JSON format, which can be decoded nto maps of key-value pairs that are not type safe
+- When reading JSON data, best practice to deserialise and convert it into type-safe model classes
+- Likewise, you can serialise your mosels back to JSON data that can be sent over the network
+- Guide: https://codewithandrea.com/articles/parse-json-dart/
+
+- Code Generation:
+- If you have many endpoints returning complex data, code generation may be a better option, and the json_annotation package helps with that
+- Can also consider using the freezed package
+- Intro to code generation and freezed package: https://www.youtube.com/watch?v=pI6cXMmXBkA&feature=youtu.be
+
+- Other Netorking Packages:
+- http package is easy to use and works well for simple apps
+- For apps with more complex requirements, the dio package may be more appropiate 
+- Dio supports more advanced features, such as sending form data, request cancellation, file downloading etc.
+- Even then, still need to deal with JSON serialisation
+- Retrofit can auto generate REST clients for all your models with minimal boiler plate code, that auto-generated all the netwroking and serialisation code for you
+- Generate REST API clients in Dart from an API schema using OpenAPI: https://www.youtube.com/watch?v=WF1pd5bdtcI&feature=youtu.be
+
+
 
 
 Questions:
