@@ -469,8 +469,33 @@ Flutter Platform Channels & Dart FFI:
 - But if you want to run performance critcal code that is written with a different langauge, such as C, C++, robust
 - For this Dart defines a Foreign Function Interface, and this tutorial shows how: https://quickbirdstudios.com/blog/dart-swift-objective-c-interop/
 
+Automated Testing:
+- To build robust, production ready apps, verify code is bug free and behaves as expected with testing
+- Manual tests: carried out by testing all your application's features by hand - very error prone and time-consuming and don't work at scale
+- Automated tests: need to be written and maintained, but they run fast and often - good safety net that can help you find out if something breaks when you refactor your code
+
+- Unit Tests, Widget Tests, Integration Tests:
+- Official documentation: https://docs.flutter.dev/testing
+- Quick tutorial with examples: https://www.youtube.com/watch?v=RDY6UYh-nyg&feature=youtu.be
+- Covers how to use the mockito package, which is useful when testing individual parts of your application in isolatiion from the rest of the code (e.g. networking)
+- With the introduction of Null Safety, mockito now relies on code generation and alot harder to use, so recommend using mocktail instead, offers the same API but doesn't require codegen
+- More in dpeth couruse on testing fundamentals: https://www.youtube.com/playlist?list=PLprI2satkVdFwpxo_bjFkCxXz5RluG8FY 
+
+- Golden Image Tests:
+- Allows you to compare a screne if your app with some refernec image file, to ensure that each pixel in the UI matches exactly with the golden version
+- Technique is quite useful if you want to verify that you don't get UI regressions as you make changes
+- Use the golden_toolkit packcages
+- Explanation article: https://medium.com/flutter-community/flutter-golden-tests-compare-widgets-with-snapshots-27f83f266cea
+
+- Integration Tests with Patrol:
+- Patrol is a new testing framework for Flutter
+- Builds on top of Flutter's existing test toolkit, allowing you to access nattive platform featurues while extending the existing finder APIs, making them shorter and easier to understand
+- Also works as a production quality of Flutter's built-in integration_test plugin by fixing some of its shortcomings and enabling features such as full isolation between tests and sharding
+- Documentation: https://patrol.leancode.co/
+- Video: https://www.droidcon.com/2023/08/07/reimagining-flutter-ui-tests-with-patrol/
 
 Questions:
 - How do you design software hierarchies - e.g. particular software
 - What state management systems do you use?
 - What navigation / routing package do you use?
+- What testing package do you use?
