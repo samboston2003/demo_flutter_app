@@ -542,3 +542,151 @@ Questions:
 - What navigation / routing package do you use?
 - What testing package do you use?
 - What CI / CD systems do you use?
+
+
+Flutter Widgets + Basic & Responsive Layouts:
+- BuildContext ✔️
+- Widgets vs Helper Methods ✔️
+- Layouts:
+> Row ✔️
+> Column ✔️
+> Stack ✔️
+> Expanded
+> Padding ✔️
+> PageView
+> List View ✔️
+> Grid View
+> Slivers
+> CustomScrollView
+> SliverAppBar
+> SliverPersistentHeader
+> SliverList
+> SliverGrid
+> SliverToBoxAdapter
+> SliverFillRemaining
+- Constraints
+- Responsive Layouts
+> MediaQuery
+> LayoutBuilder 
+> OrientationBuilder
+> Expanded and Flexible
+> FractionallySizedBox
+> Aspect Ratio
+> Split View / Drawer Navigation
+
+Flutter Theming:
+- Creating an App Theme using MaterialApp ✔️
+> colours ✔️
+> font styles ✔️
+- Applying theme using Theme.of(context) ✔️
+- Override theme ✔️
+
+State Management Basics:
+- Local State ✔️
+- App State ✔️
+-  Widgets
+> StatelessWidget ✔️
+> StatefulWidget ✔️
+> InheritedWidget
+> ValueNotifier
+> ValueListenableBuilder
+> ChangeNotifier ✔️
+> FutureBuilder / StreamBuilder ✔️
+- Keys
+> Value Key
+> Object Key
+> Unique Key
+> Global Key
+
+State Management Packages & App Architectures:
+- State Management 
+> provider ✔️
+> flutter_bloc
+> riverpod
+- App Architecture:
+> Riverpod
+> Feature-first
+> Layer-first
+
+Navigation and Routing:
+- Navigator 1.0
+> push / pop ✔️
+> named routes ✔️
+> passing arguments to named routes ✔️
+- Navigator 2.0
+> deep links
+> perform state restoration
+> make arbitrary changes to the navigation stacks
+-  Other
+> go_router
+> auto_route
+> beamer
+
+Interactivity and User Input:
+- TextField Widget
+> TextEditingController argument
+- Forms
+> FormTextFields
+- flutter_hooks
+- other input widgets
+> date and time pickers
+> checkboxes
+> radio boxes
+> sliders
+> switches
+- gestures
+> taps
+> drags
+> other gestures 
+
+Animations:
+- Built in ✔️
+- Packages
+> flutter_animate
+> spinKit
+> animations
+> Funvas
+> simple animations
+> staggered animations
+> spring
+> rive
+
+Local Data Persistence 
+- Key Value Store ✔️
+- Secure Key Value Store
+- Relational Database (SQL)
+- NoSQL Database
+- Readingand Writing Files to Disk
+- Local vs Remote Data Persistence
+> Firebase
+
+Networking:
+- Dart http packacge for REST API
+> JSON format
+> deserialise into type-safe model
+> serialise model back into JSON data
+- Code generation
+> freezed package
+- other networking package
+> dio package
+> retofit packcage
+
+Flutter Platform Channels and Dart FFI:
+- Flutter Platform Channels
+- Dart FFI
+
+Automated Testing
+- Unit Tests
+- Widget Tests
+- Integration Tests 
+- Mockito package
+- Golden Image Tests with golden_toolkit package
+- Integration tests with patrol
+
+Continuous Integration and Delivery:
+- Codemagic
+- GitHub Actions
+
+
+- local data persistence
+- automated test
