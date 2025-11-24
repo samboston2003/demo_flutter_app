@@ -1,6 +1,11 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:math';
+
+int randomInRange(int min, int max) {
+  return min + Random().nextInt(max - min + 1);
+}
 
 void main() {
   // runs MyApp
@@ -58,6 +63,10 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  // int get number => randomInRange(-50, 50);
+
+  int number = randomInRange(-50, 50);
 }
 
 class MyHomePage extends StatefulWidget {

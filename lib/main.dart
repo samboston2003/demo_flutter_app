@@ -27,6 +27,9 @@ import 'first_flutter_app.dart' as flutter_file;
 // Ctrl + .
 // Convert to Stateful Widget
 
+// Open Widget Tree
+// Control + Shift + P
+
 // entry point for every Flutter app
 // void doesn't return anything
 void main() {
@@ -39,6 +42,7 @@ void main() {
   // creates an instacne of a class that extends ChangeNotifier
   // makes that instance available to all descendent widgets in the widget tree
   // automatically listens for changes - when notifyListeners() is called, any widget using this provider rebuilds
+  // _ is a placeholder for BuildContext parameter
   runApp(
     ChangeNotifierProvider(create: (_) => CounterModel(), child: const MyApp()),
   );
@@ -47,7 +51,7 @@ void main() {
   // dart_file.main;
 
   // runs first_flutter_app file
-  // flutter_file.main();
+  flutter_file.main();
 }
 
 // defines a custom widget called MyApp
@@ -814,3 +818,6 @@ class _AnimatedIncrementButtonState extends State<AnimatedIncrementButton> {
 // 4) Use of /// for documentation
 // 5) Better use of theming
 // 6) Instead of hard coding pages in the drawer, define these at the start, then use a loop to display all of them
+// 7) Better use of classes for reusable objects - e.g. with the Buttons
+// 8) Store AppState in MyApp
+// 9) Home Page - then build pages off this
