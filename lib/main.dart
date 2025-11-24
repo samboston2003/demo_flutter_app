@@ -30,6 +30,13 @@ import 'first_flutter_app.dart' as flutter_file;
 // Open Widget Tree
 // Control + Shift + P
 
+// Standard comment
+//* Highlight
+//! Alert
+//? Query
+//TODO: refactor code
+//// cross out
+
 // entry point for every Flutter app
 // void doesn't return anything
 void main() {
@@ -51,7 +58,7 @@ void main() {
   // dart_file.main;
 
   // runs first_flutter_app file
-  flutter_file.main();
+  // flutter_file.main();
 }
 
 // defines a custom widget called MyApp
@@ -131,209 +138,209 @@ class MyApp extends StatelessWidget {
 }
 
 // Counter Screen implementation without ChangeNotifier and with a StatefulWidget
-// // Created a StatefulWidget instead of StatelessWidet
-// // StatelessWidgets can't update themselves - once built they stay the same
-// // StatefulWidgets have a separate State object that can change and rebuild the UI
-// // This is just the wrapper for the widget - doesn't hold the data itself - instead linked to another class that holds the state
-// class CounterScreen extends StatefulWidget {
-//   const CounterScreen({super.key});
-//   @override
-//   // method creates the State object where all the logic and mutable data live
-//   State<CounterScreen> createState() => _CounterScreenState();
-// }
-// class _CounterScreenState extends State<CounterScreen> {
-//   // counter variable
-//   // _ makes it priviate to this file
-//   int _counter = 0;
-//   // void = function doesn't return a value
-//   // _incrementCounter = name of function
-//   // _ at the start = private to this file
-//   // () = no parameters are passed to this function
-//   // => = Dart shorthand for single experssion function
-//   // SetState = method of StatefulWidget's State class - tells Flutter to rebuild the widget - triggering the build() method again
-//   // () = defines function's parameters - empty as no arguments
-//   // => _counter++ = function's body
-//   void _incrementCounter() => setState(() => _counter++);
-//   void _decrementCounter() => setState(() => _counter--);
-//   void _resetCounter() => setState(() => _counter = 0);
-//   @override
-//   // every widget defines a build() method that returns the UI for that widget
-//   // gets a buildContext - allows Flutter to locate where in the widget tree you are
-//   Widget build(BuildContext context) {
-//     // Scaffold is a basic page structure for a Material Design app - gives a full page layout
-//     // provides slots for things like appBar, body, floatingActionButton, drawer
-//     // when empty, shows a blank white screen
-//     return Scaffold(
-//       // app Bar is part of Scaffold
-//       // puts it at top of screen - typically for titles, navigation buttons, actions
-//       appBar: AppBar(
-//         // title is what appears in appBar - often a Text widget but can be any type of widget
-//         title: Text(
-//           'Counter Page',
-//           style: Theme.of(context).textTheme.headlineSmall,
-//         ),
-//         // centers the title horizontally - different default alignment on different devices - so this enforces it on all
-//         centerTitle: true,
-//         // changes background colour of AppBar
-//         // Colors is part of Flutter's Material librayr - contains many pre-defined colours
-//         backgroundColor: Theme.of(context).primaryColor,
-//       ),
-//       // global drawer
-//       drawer: const AppDrawer(),
-//       // body is part of Scaffold
-//       // body is what fills the main screen area of your app
-//       // Padding adds space around child
-//       body: Padding(
-//         padding: const EdgeInsets.all(10.0),
-//         // Center is a layout widget which simply centers its child both vertically and horizontally
-//         child: Center(
-//           // Columns arrange widgets vertically
-//           child: Column(
-//             // esures column doesn't stretch the whole screen
-//             mainAxisSize: MainAxisSize.min,
-//             // children of column
-//             children: [
-//               // Stack widget allows you to place widgets on top of each other
-//               // first child is at bottom, and each subsequent child is layered on top
-//               Stack(
-//                 alignment: Alignment.center,
-//                 children: [
-//                   // background circle behind text
-//                   Container(
-//                     width: 150,
-//                     height: 150,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[100],
-//                       shape: BoxShape.circle,
-//                     ),
-//                   ),
-//                   // Text is a basic widget - simply displays a string on the screen
-//                   // Use $ to reference variables - interpolated the variables into the string dynamically
-//                   // When _counter changes, the whole widget rebuilds, showing the new value
-//                   Text(
-//                     '$_counter',
-//                     // customise the look of the text with TextStyle
-//                     // can be const as style is fixed
-//                     style: Theme.of(context).textTheme.headlineLarge,
-//                   ),
-//                   // Positioned Widget used inside a Stack
-//                   // allows you to precisley position a child relative to the Stack's edges
-//                   Positioned(
-//                     // top edge of the child is aligned 0 pixels from the top of the stack
-//                     top: 0,
-//                     // right edge of the child is aligned 0 pixels from the right of the stack
-//                     right: 0,
-//                     // Container = general purose wdget for layout, styling, and decoration
-//                     child: Container(
-//                       // padding adds pixels of padding inside container around its child
-//                       padding: const EdgeInsets.all(10),
-//                       // decoration used to style the Container visually
-//                       decoration: BoxDecoration(
-//                         // sets a colour of container
-//                         color: Colors.red,
-//                         // sets a shape of container
-//                         shape: BoxShape.circle,
-//                       ),
-//                       // child of container, placed inside the padded, circuular, background
-//                       child: const Icon(
-//                         // star icon
-//                         Icons.star,
-//                         // size of icon
-//                         size: 16,
-//                         // colour of icon
-//                         color: Colors.white,
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               // space between widgets
-//               // hegiht = vertical
-//               // weight = horizonal
-//               const SizedBox(height: 20),
-//               // rows align children horizontally
-//               Row(
-//                 mainAxisSize: MainAxisSize.min,
-//                 children: [
-//                   ElevatedButton(
-//                     onPressed: _decrementCounter,
-//                     child: const Icon(Icons.remove),
-//                   ),
-//                   const SizedBox(width: 20),
-//                   ElevatedButton(
-//                     onPressed: _incrementCounter,
-//                     child: const Icon(Icons.add),
-//                   ),
-//                 ],
-//               ),
-//               const SizedBox(height: 20),
-//               // Card is a material widget that adds a background, elevation, and shape
-//               Card(
-//                 // shadow effect
-//                 elevation: 4,
-//                 // shape of card
-//                 shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(10),
-//                 ),
-//                 color: Colors.blue[50],
-//                 child: Padding(
-//                   // padding - space inside card
-//                   padding: const EdgeInsets.all(16.0),
-//                   child: Text(
-//                     'Use the + and - buttons to change the counter. \nTap the cross to reset.',
-//                     // center the text inside the card
-//                     textAlign: TextAlign.center,
-//                     // override the theme colour
-//                     style: Theme.of(
-//                       context,
-//                     ).textTheme.bodyMedium?.copyWith(color: Colors.blue[800]),
-//                   ),
-//                 ),
-//               ),
-//               // sized box
-//               const SizedBox(height: 20),
-//               // button
-//               ElevatedButton(
-//                 // when presed navigate to the /info page, passing the current context, as well as any arguments
-//                 // this is the most direct and explicit way to pass arguments
-//                 // sent in a small map so you can add more arguments later
-//                 // ModalRoute is a Flutter class that represents the current route
-//                 // .of(context) finds the current route from the given BuildContext
-//                 // ?. is a null aware opeator - only accesses .settings if not null - returns null otherwise
-//                 // .name is the string identifier - i.e. name of current route
-//                 // ?? is a null coalescing operator - if value on left is null - use value on right instead
-//                 onPressed: () {
-//                   Navigator.pushNamed(
-//                     context,
-//                     '/info',
-//                     arguments: {
-//                       'from':
-//                           ModalRoute.of(context)?.settings.name ?? 'Unknown',
-//                     },
-//                   );
-//                 },
-//                 child: const Text('Go to Info Page'),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//       // floatingActionButton is part of Scaffold
-//       // usually a circular button that floats over the main content
-//       // Flutter automatically places it in the bottom right corner
-//       floatingActionButton: FloatingActionButton(
-//         // callback that runs when the button is tapped
-//         // can be set to null so button is disabled
-//         // can calso call method - each tap increases _counter and triggersa rebuild
-//         onPressed: _resetCounter,
-//         // required a child - typically an Icon
-//         // use Flutter's built in icon set (Icons.clear)
-//         // can be any widget
-//         child: const Icon(Icons.clear),
-//       ),
-//     );
-//   }
-// }
+// // // Created a StatefulWidget instead of StatelessWidet
+// // // StatelessWidgets can't update themselves - once built they stay the same
+// // // StatefulWidgets have a separate State object that can change and rebuild the UI
+// // // This is just the wrapper for the widget - doesn't hold the data itself - instead linked to another class that holds the state
+// // class CounterScreen extends StatefulWidget {
+// //   const CounterScreen({super.key});
+// //   @override
+// //   // method creates the State object where all the logic and mutable data live
+// //   State<CounterScreen> createState() => _CounterScreenState();
+// // }
+// // class _CounterScreenState extends State<CounterScreen> {
+// //   // counter variable
+// //   // _ makes it priviate to this file
+// //   int _counter = 0;
+// //   // void = function doesn't return a value
+// //   // _incrementCounter = name of function
+// //   // _ at the start = private to this file
+// //   // () = no parameters are passed to this function
+// //   // => = Dart shorthand for single experssion function
+// //   // SetState = method of StatefulWidget's State class - tells Flutter to rebuild the widget - triggering the build() method again
+// //   // () = defines function's parameters - empty as no arguments
+// //   // => _counter++ = function's body
+// //   void _incrementCounter() => setState(() => _counter++);
+// //   void _decrementCounter() => setState(() => _counter--);
+// //   void _resetCounter() => setState(() => _counter = 0);
+// //   @override
+// //   // every widget defines a build() method that returns the UI for that widget
+// //   // gets a buildContext - allows Flutter to locate where in the widget tree you are
+// //   Widget build(BuildContext context) {
+// //     // Scaffold is a basic page structure for a Material Design app - gives a full page layout
+// //     // provides slots for things like appBar, body, floatingActionButton, drawer
+// //     // when empty, shows a blank white screen
+// //     return Scaffold(
+// //       // app Bar is part of Scaffold
+// //       // puts it at top of screen - typically for titles, navigation buttons, actions
+// //       appBar: AppBar(
+// //         // title is what appears in appBar - often a Text widget but can be any type of widget
+// //         title: Text(
+// //           'Counter Page',
+// //           style: Theme.of(context).textTheme.headlineSmall,
+// //         ),
+// //         // centers the title horizontally - different default alignment on different devices - so this enforces it on all
+// //         centerTitle: true,
+// //         // changes background colour of AppBar
+// //         // Colors is part of Flutter's Material librayr - contains many pre-defined colours
+// //         backgroundColor: Theme.of(context).primaryColor,
+// //       ),
+// //       // global drawer
+// //       drawer: const AppDrawer(),
+// //       // body is part of Scaffold
+// //       // body is what fills the main screen area of your app
+// //       // Padding adds space around child
+// //       body: Padding(
+// //         padding: const EdgeInsets.all(10.0),
+// //         // Center is a layout widget which simply centers its child both vertically and horizontally
+// //         child: Center(
+// //           // Columns arrange widgets vertically
+// //           child: Column(
+// //             // esures column doesn't stretch the whole screen
+// //             mainAxisSize: MainAxisSize.min,
+// //             // children of column
+// //             children: [
+// //               // Stack widget allows you to place widgets on top of each other
+// //               // first child is at bottom, and each subsequent child is layered on top
+// //               Stack(
+// //                 alignment: Alignment.center,
+// //                 children: [
+// //                   // background circle behind text
+// //                   Container(
+// //                     width: 150,
+// //                     height: 150,
+// //                     decoration: BoxDecoration(
+// //                       color: Colors.blue[100],
+// //                       shape: BoxShape.circle,
+// //                     ),
+// //                   ),
+// //                   // Text is a basic widget - simply displays a string on the screen
+// //                   // Use $ to reference variables - interpolated the variables into the string dynamically
+// //                   // When _counter changes, the whole widget rebuilds, showing the new value
+// //                   Text(
+// //                     '$_counter',
+// //                     // customise the look of the text with TextStyle
+// //                     // can be const as style is fixed
+// //                     style: Theme.of(context).textTheme.headlineLarge,
+// //                   ),
+// //                   // Positioned Widget used inside a Stack
+// //                   // allows you to precisley position a child relative to the Stack's edges
+// //                   Positioned(
+// //                     // top edge of the child is aligned 0 pixels from the top of the stack
+// //                     top: 0,
+// //                     // right edge of the child is aligned 0 pixels from the right of the stack
+// //                     right: 0,
+// //                     // Container = general purose wdget for layout, styling, and decoration
+// //                     child: Container(
+// //                       // padding adds pixels of padding inside container around its child
+// //                       padding: const EdgeInsets.all(10),
+// //                       // decoration used to style the Container visually
+// //                       decoration: BoxDecoration(
+// //                         // sets a colour of container
+// //                         color: Colors.red,
+// //                         // sets a shape of container
+// //                         shape: BoxShape.circle,
+// //                       ),
+// //                       // child of container, placed inside the padded, circuular, background
+// //                       child: const Icon(
+// //                         // star icon
+// //                         Icons.star,
+// //                         // size of icon
+// //                         size: 16,
+// //                         // colour of icon
+// //                         color: Colors.white,
+// //                       ),
+// //                     ),
+// //                   ),
+// //                 ],
+// //               ),
+// //               // space between widgets
+// //               // hegiht = vertical
+// //               // weight = horizonal
+// //               const SizedBox(height: 20),
+// //               // rows align children horizontally
+// //               Row(
+// //                 mainAxisSize: MainAxisSize.min,
+// //                 children: [
+// //                   ElevatedButton(
+// //                     onPressed: _decrementCounter,
+// //                     child: const Icon(Icons.remove),
+// //                   ),
+// //                   const SizedBox(width: 20),
+// //                   ElevatedButton(
+// //                     onPressed: _incrementCounter,
+// //                     child: const Icon(Icons.add),
+// //                   ),
+// //                 ],
+// //               ),
+// //               const SizedBox(height: 20),
+// //               // Card is a material widget that adds a background, elevation, and shape
+// //               Card(
+// //                 // shadow effect
+// //                 elevation: 4,
+// //                 // shape of card
+// //                 shape: RoundedRectangleBorder(
+// //                   borderRadius: BorderRadius.circular(10),
+// //                 ),
+// //                 color: Colors.blue[50],
+// //                 child: Padding(
+// //                   // padding - space inside card
+// //                   padding: const EdgeInsets.all(16.0),
+// //                   child: Text(
+// //                     'Use the + and - buttons to change the counter. \nTap the cross to reset.',
+// //                     // center the text inside the card
+// //                     textAlign: TextAlign.center,
+// //                     // override the theme colour
+// //                     style: Theme.of(
+// //                       context,
+// //                     ).textTheme.bodyMedium?.copyWith(color: Colors.blue[800]),
+// //                   ),
+// //                 ),
+// //               ),
+// //               // sized box
+// //               const SizedBox(height: 20),
+// //               // button
+// //               ElevatedButton(
+// //                 // when presed navigate to the /info page, passing the current context, as well as any arguments
+// //                 // this is the most direct and explicit way to pass arguments
+// //                 // sent in a small map so you can add more arguments later
+// //                 // ModalRoute is a Flutter class that represents the current route
+// //                 // .of(context) finds the current route from the given BuildContext
+// //                 // ?. is a null aware opeator - only accesses .settings if not null - returns null otherwise
+// //                 // .name is the string identifier - i.e. name of current route
+// //                 // ?? is a null coalescing operator - if value on left is null - use value on right instead
+// //                 onPressed: () {
+// //                   Navigator.pushNamed(
+// //                     context,
+// //                     '/info',
+// //                     arguments: {
+// //                       'from':
+// //                           ModalRoute.of(context)?.settings.name ?? 'Unknown',
+// //                     },
+// //                   );
+// //                 },
+// //                 child: const Text('Go to Info Page'),
+// //               ),
+// //             ],
+// //           ),
+// //         ),
+// //       ),
+// //       // floatingActionButton is part of Scaffold
+// //       // usually a circular button that floats over the main content
+// //       // Flutter automatically places it in the bottom right corner
+// //       floatingActionButton: FloatingActionButton(
+// //         // callback that runs when the button is tapped
+// //         // can be set to null so button is disabled
+// //         // can calso call method - each tap increases _counter and triggersa rebuild
+// //         onPressed: _resetCounter,
+// //         // required a child - typically an Icon
+// //         // use Flutter's built in icon set (Icons.clear)
+// //         // can be any widget
+// //         child: const Icon(Icons.clear),
+// //       ),
+// //     );
+// //   }
+// // }
 
 // Created a StatefulWidget instead of StatelessWidget
 // StatelessWidgets can't update themselves - once built they stay the same
